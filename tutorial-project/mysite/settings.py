@@ -84,6 +84,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates'),],
         'OPTIONS': {
             'context_processors': [
+                'aldryn_boilerplates.context_processors.boilerplate',
                 'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.i18n',
@@ -97,6 +98,7 @@ TEMPLATES = [
     'cms.context_processors.cms_settings'
             ],
             'loaders': [
+                'aldryn_boilerplates.template_loaders.AppDirectoriesLoader',
                 'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader'
@@ -150,7 +152,19 @@ INSTALLED_APPS = (
     'djangocms_inherit',
     'djangocms_link',
     'reversion',
-    'mysite'
+    'mysite',
+    'polls',
+    'polls_plugin',
+    'aldryn_apphooks_config',
+    'aldryn_boilerplates',
+    'aldryn_categories',
+    'aldryn_newsblog',
+    'aldryn_people',
+    'aldryn_reversion',
+    'parler',
+    'sortedm2m',
+    'taggit',
+    'faq',
 )
 
 LANGUAGES = (
@@ -212,3 +226,12 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+ALDRYN_BOILERPLATE_NAME='bootstrap3'
+
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'aldryn_boilerplates.staticfile_finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+ ]
